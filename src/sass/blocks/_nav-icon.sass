@@ -1,0 +1,53 @@
+// Settings
+$time: .1s
+
+$width: 4rem
+$height: 3rem
+
+$line-height: .4rem
+$spacing: .6rem
+$radius: .4rem
+
+$color: #0f0f0f
+
+.mobile-nav-btn
+  width: $width
+  height: calc($line-height * 3 + $spacing * 2)
+
+  display: flex
+  justify-content: center
+  align-items: center
+
+  z-index: 999
+
+.nav-icon
+  width: $width
+  height: $line-height
+  position: relative
+  border-radius: $radius
+  background: $color
+  &::before,
+  &::after
+    content: ''
+    display: block
+    position: absolute
+    left: 0
+    width: $width
+    height: $line-height
+    border-radius: $radius
+    background-color: $color
+    transition: transform $time ease-in, top $time linear $time
+  &::before
+    top: calc(-1 * ($line-height + $spacing))
+  &::after
+    top: calc($line-height + $spacing)
+  &__active
+    background-color: transparent
+    &::before,
+    &::after
+      top: 0
+      transition: top $time linear, transform $time ease-in $time
+    &::before
+      transform: rotate(45deg)
+    &::after
+      transform: rotate(-45deg)

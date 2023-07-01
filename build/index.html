@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -10,27 +10,39 @@
 </head>
 <body>
 
-  <header class="header">
-  <h4 class="header-title">Header</h4>
-  <nav class="menu">
-    <a class="menu-link" href="/index.html">Index</a>
-    <a class="menu-link" href="/pages/contacts.html">Contacts</a>
-    <a class="menu-link" href="/pages/about.html">About</a>
-  </nav>
-</header>
-
-  <section class="main">
-    <div class="container">
-      <h1>Index</h1>
-      <p>
-        <input type="text" id="calendar" placeholder="Date choice" autocomplete="off"/>
-      </p>
-      <img src="./img/child.jpg" width="200" alt="img">
+<header class="header">
+  <div class="container">
+    <div class="header__row">
+      <div class="logo">Logo</div>
+      <button class="mobile-nav-btn">
+        <div class="nav-icon"></div>
+      </button>
     </div>
-  </section>
-
-  <footer class="footer">
-  <h4 class="footer-title">Footer</h4>
+  </div>
+</header>
+<div class="mobile-nav">
+  <ul class="mobile-nav__list">
+    <li><a href="#!" class="active">Home</a></li>
+    <li><a href="#!">Services</a></li>
+    <li><a href="#!">About</a></li>
+    <li><a href="#!">Projects</a></li>
+    <li><a href="#!">Contacts</a></li>
+  </ul>
+</div>
+<section class="main">
+  <div class="container">
+    <h1 class="main-title">Index</h1>
+    <p>
+      <input type="text" id="calendar" placeholder="Date choice" autocomplete="off" />
+    </p>
+    <img src="./img/child.jpg" width="200" alt="img">
+  </div>
+</section>
+<footer class="footer">
+  <div class="container">
+    <h2>Footer</h2>
+  </div>
 </footer>
+
 </body>
 </html>

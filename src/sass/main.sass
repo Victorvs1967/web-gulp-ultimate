@@ -1,1 +1,14 @@
-@import './includes/**/*.sass'
+// Base Styles
+@use './includes/reset'
+@use './includes/fonts'
+@use './includes/vars'
+@use './includes/base'
+@use './includes/containers'
+@use './includes/utils'
+@use './includes/sticky-footer'
+
+// Blocks Styles
+@import './blocks/*.sass'
+
+// Media Query Styles
+@import ./includes/media

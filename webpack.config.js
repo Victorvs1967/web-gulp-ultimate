@@ -2,7 +2,6 @@ const config = {
   mode: 'production',
   entry: {
     main: './src/js/main.js',
-    contacts: './src/js/contacts.js',
     about: './src/js/about.js',
   },
   output: {

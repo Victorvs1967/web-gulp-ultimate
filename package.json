@@ -1,5 +1,9 @@
 {
   "type": "module",
+  "scripts": {
+    "start": "gulp",
+    "build": "gulp docs"
+  },
   "devDependencies": {
     "@babel/core": "^7.22.5",
     "@babel/preset-env": "^7.22.5",
