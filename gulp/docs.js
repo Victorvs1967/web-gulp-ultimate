@@ -15,6 +15,7 @@ import webpCss from 'gulp-webp-css';
 import changed from 'gulp-changed';
 import plumber from 'gulp-plumber';
 import notify from 'gulp-notify';
+import rename from 'gulp-rename';
 import { deleteAsync } from 'del';
 import server from 'gulp-server-livereload';
 
@@ -65,6 +66,7 @@ task('sass', () =>
     .pipe(autoprefixer())
     .pipe(csso())
     .pipe(webpCss())
+    .pipe(rename('main.min.css'))
     .pipe(dest('./docs/css/'))
 );
 

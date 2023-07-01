@@ -10,6 +10,7 @@ import changed from 'gulp-changed';
 import plumber from 'gulp-plumber';
 import notify from 'gulp-notify';
 import { deleteAsync } from 'del';
+import rename from 'gulp-rename';
 import server from 'gulp-server-livereload';
 
 import config from '../webpack.config.js';
@@ -38,7 +39,7 @@ const plumberNotify = title => ({
 
 task('html:dev', () =>
   src(['./src/html/**/*.html', '!./src/html/blocks/*.html'])
-    .pipe(changed('./build/'))
+    .pipe(changed('./build/', { hasChanged: changed.compareContents }))
     .pipe(plumber(plumberNotify('HTML')))
     .pipe(fileInclude(fileInludeOptions))
     .pipe(dest('./build/'))
@@ -50,6 +51,7 @@ task('sass:dev', () =>
     .pipe(plumber(plumberNotify('SASS')))
     .pipe(sassGlob())
     .pipe(sass())
+    .pipe(rename('main.min.css'))
     .pipe(dest('./build/css/', { sourcemaps: true }))
 );
 
