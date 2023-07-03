@@ -1,5 +1,8 @@
 import gulp from 'gulp';
+
 import font, { fontsStyle } from './tasks/fonts.js';
+import html from './tasks/html.js'
+
 import './gulp/dev.js';
 import './gulp/docs.js';
 
@@ -15,7 +18,7 @@ task('docs', series(
   'clean',
   font,
   fontsStyle,
-  parallel('files', 'images', 'js', 'sass', 'html'),
+  parallel('files', 'images', 'js', 'sass', html),
   // parallel('files', 'images', 'fonts', 'js', 'sass', 'html'),
   parallel('server'),
 ));
