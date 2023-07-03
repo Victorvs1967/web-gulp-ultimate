@@ -1,6 +1,7 @@
 import gulp from "gulp";
 import fileInclude from 'gulp-file-include';
 import htmlclean from 'gulp-htmlclean';
+import replace from 'gulp-replace';
 import * as Sass from 'sass';
 import gulpSass from 'gulp-sass';
 import sassGlob from 'gulp-sass-glob';
@@ -48,10 +49,11 @@ const plumberNotify = title => ({
 });
 
 task('html', () =>
-  src(['./src/html/**/*.html', '!./src/html/blocks/*.html'])
+  src(['./src/html/**/*.html', '!./src/html/includes/*.html'])
     .pipe(changed('./docs/'))
     .pipe(plumber(plumberNotify('HTML')))
     .pipe(fileInclude(fileInludeOptions))
+    .pipe(replace(/@img\//g, './img/'))
     .pipe(webpHtml())
     .pipe(htmlclean())
     .pipe(dest('./docs/'))
@@ -64,6 +66,7 @@ task('sass', () =>
     .pipe(sassGlob())
     .pipe(sass(sassOptions))
     .pipe(autoprefixer())
+    .pipe(replace(/@img\//g, '../img/'))
     .pipe(csso())
     .pipe(webpCss())
     .pipe(rename('main.min.css'))

@@ -38,10 +38,11 @@ const plumberNotify = title => ({
 });
 
 task('html:dev', () =>
-  src(['./src/html/**/*.html', '!./src/html/blocks/*.html'])
+  src(['./src/html/**/*.html', '!./src/html/includes/*.html'])
     .pipe(changed('./build/', { hasChanged: changed.compareContents }))
     .pipe(plumber(plumberNotify('HTML')))
     .pipe(fileInclude(fileInludeOptions))
+    .pipe(replace(/@img\//g, './img/'))
     .pipe(dest('./build/'))
 );
 
@@ -51,6 +52,7 @@ task('sass:dev', () =>
     .pipe(plumber(plumberNotify('SASS')))
     .pipe(sassGlob())
     .pipe(sass())
+    .pipe(replace(/@img\//g, '../img/'))
     .pipe(rename('main.min.css'))
     .pipe(dest('./build/css/', { sourcemaps: true }))
 );
