@@ -48,16 +48,16 @@ const plumberNotify = title => ({
   })
 });
 
-task('html', () =>
-  src(['./src/html/**/*.html', '!./src/html/includes/*.html'])
-    .pipe(changed('./docs/'))
-    .pipe(plumber(plumberNotify('HTML')))
-    .pipe(fileInclude(fileInludeOptions))
-    .pipe(replace(/@img\//g, './img/'))
-    .pipe(webpHtml())
-    .pipe(htmlclean())
-    .pipe(dest('./docs/'))
-);
+// task('html', () =>
+//   src(['./src/html/**/*.html', '!./src/html/includes/*.html'])
+//     .pipe(changed('./docs/'))
+//     .pipe(plumber(plumberNotify('HTML')))
+//     .pipe(fileInclude(fileInludeOptions))
+//     .pipe(replace(/@img\//g, './img/'))
+//     .pipe(webpHtml())
+//     .pipe(htmlclean())
+//     .pipe(dest('./docs/'))
+// );
 
 task('sass', () =>
   src('./src/sass/*.sass')

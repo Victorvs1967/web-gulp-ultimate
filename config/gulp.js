@@ -26,6 +26,11 @@ const app = {
       sound: false,
     })
   }),
+  // INCLUDE
+  fileInludeOptions: {
+    prefix: '@@',
+    basepath: '@file',
+  },
   // PUG
   pug: {
     doctype: 'html',
