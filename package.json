@@ -3,7 +3,8 @@
   "scripts": {
     "start": "gulp",
     "build": "gulp --prod",
-    "pug": "gulp --pug"
+    "devPug": "gulp --pug",
+    "buildPug": "gulp --prod --pug"
   },
   "devDependencies": {
     "@babel/core": "^7.22.5",

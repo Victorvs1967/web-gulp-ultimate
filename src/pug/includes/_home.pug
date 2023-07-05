@@ -1,6 +1,10 @@
 section.main
   .container
     h1.main-title Index
+
     p
       input#calendar(type="text", placeholder="Date choice", autocomplete="off")
-    img(src="@img/child.jpg", width="200", alt="img")
+    .wrapper
+      img(src="@img/child.jpg", width="200", alt="img")
+      |
+      +svg-icon('arrow_down').icon

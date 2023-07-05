@@ -6,11 +6,10 @@ import replace from 'gulp-replace';
 import csso from 'gulp-csso';
 import webpCss from 'gulp-webp-css';
 import rename from 'gulp-rename';
-import gulpIf from 'gulp-if';
 
 import app from '../config/gulp.js';
 
-const { src, dest, path, isDev, isProd, changed, plumber, plumberNotify, sassOptions } = app;
+const { src, dest, path, gulpif, isDev, isProd, changed, plumber, plumberNotify, sassOptions } = app;
 const _sass = gulpSass(Sass);
 
 const sass = () => src(path.sass.src, { sourcemaps: isDev })
@@ -20,7 +19,7 @@ const sass = () => src(path.sass.src, { sourcemaps: isDev })
   .pipe(_sass(sassOptions))
   .pipe(autoPrefixer())
   .pipe(replace(/@img\//g, '../img/'))
-  .pipe(gulpIf(isProd, csso()))
+  .pipe(gulpif(isProd, csso()))
   .pipe(webpCss())
   .pipe(rename('main.min.css'))
   .pipe(dest(path.sass.dest, { sourcemaps: isDev }));

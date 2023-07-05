@@ -1,16 +1,17 @@
 const src = './src',
-      dest = process.argv.includes('--prod') ? './docs' : './build';
+      dest = process.argv.includes('--prod') ? './docs' : './dist';
 
 const path = {
   root: dest,
   src: src,
   html: {
-    src: [src.concat('/html/**/*.html'), '!'.concat(src, '/html/includes/*.html')],
+    src: [src.concat('/html/*.html'), src.concat('/html/pages/*.html'), '!'.concat(src, '/html/includes/*.html')],
+    pages: src.concat('/html/pages/*.html'),
     watch: src.concat('/html/**/*.html'),
     dest: dest,
   },
   pug: {
-    src: src.concat('/pug/*.pug'),
+    src: [src.concat('/pug/*.pug'), src.concat('/pug/pages/*.pug')],
     pages: src.concat('/pug/pages/*.pug'),
     watch: src.concat('/pug/**/*.pug'),
     dest: dest,

@@ -1,6 +1,6 @@
 import gulp from 'gulp';
 
-import font, { fontsStyle } from './tasks/fonts.js';
+import fonts, { fontsStyle } from './tasks/fonts.js';
 import html from './tasks/html.js';
 import pug from './tasks/pug.js';
 import sass from './tasks/sass.js';
@@ -12,12 +12,18 @@ import watcher from './tasks/watcher.js';
 import clean from './tasks/clean.js'
 import app from './config/gulp.js';
 
-const { task, series, parallel } = gulp;
-const { isPug } = app;
+const { series, parallel } = gulp;
+const { isDev, isPug } = app;
 
-task('default', series(
+const build = series(
   clean,
-  series(font, fontsStyle),
+  series(fonts, fontsStyle),
   parallel(svgSprite, images, scripts, sass, isPug ? pug : html),
+);
+
+const dev = series(
+  build,
   parallel(server, watcher),
-));
+);
+
+export default isDev ? dev : build;

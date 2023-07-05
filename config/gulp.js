@@ -44,12 +44,12 @@ const app = {
   // PUG
   pugOptions: {
     doctype: 'html',
-    pretty: isDev,
+    pretty: !process.argv.includes('--prod'),
     date: {},
   },
   // SASS
   sassOptions: {
-    outputStyle: isProd ? 'compressed' : 'expanded',
+    outputStyle: process.argv.includes('--prod') ? 'compressed' : 'expanded',
   },
   // RENAME
   rename: {
@@ -58,7 +58,7 @@ const app = {
   },
   // WEBPACK
   webpackOptions: {
-    mode: isProd ? 'production' : 'development',
+    mode: process.argv.includes('--prod') ? 'production' : 'development',
     entry: {
       main: './src/js/main.js',
       about: './src/js/about.js',
@@ -80,7 +80,7 @@ const app = {
     verbose: true
   },
   // FONTER
-  fonter: {
+  fonterOptions: {
     formats: 'ttf'
   },
   // SVG
