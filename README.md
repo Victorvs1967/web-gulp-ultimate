@@ -4,7 +4,7 @@
 
 ## Run Gulp Assempler with Opions:
 
-### - "gulp" -- development mode with standard HTML;
-### - "gulp --pug" -- development mode with PUG preprocessor;
-### - "gulp --prod" -- production mode with standard HTML;
-### - "gulp --prod --pug" -- production mode with PUG preprocessor;
+### 1. "gulp" - development mode with standard HTML;
+### 2. "gulp --pug" - development mode with PUG preprocessor;
+### 3. "gulp --prod" - production mode with standard HTML;
+### 4. "gulp --prod --pug" - production mode with PUG preprocessor.
