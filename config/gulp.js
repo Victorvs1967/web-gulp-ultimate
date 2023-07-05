@@ -2,22 +2,32 @@ import gulp from 'gulp';
 import plumber from 'gulp-plumber';
 import notify from 'gulp-notify';
 import newer from 'gulp-newer';
+import changed from 'gulp-changed';
+import replace from 'gulp-replace';
+import gulpif from 'gulp-if';
+
 import path from '../config/path.js';
 
-const {src, dest} = gulp;
+const {src, dest, watch} = gulp;
 const isProd = process.argv.includes('--prod'),
-      isDev = !isProd;
+      isDev = !isProd,
+      isPug = process.argv.includes('--pug');
 
 const app = {
   // COMMON
   src,
   dest,
+  watch,
   path,
+  gulpif,
   plumber,
   notify,
+  changed,
+  replace,
   newer,
   isProd,
   isDev,
+  isPug,
   // NOTIFY
   plumberNotify: title => ({
     errorHandler: notify.onError({
@@ -32,14 +42,14 @@ const app = {
     basepath: '@file',
   },
   // PUG
-  pug: {
+  pugOptions: {
     doctype: 'html',
-    pretty: isDev,
+    pretty: !process.argv.includes('--prod'),
     date: {},
   },
   // SASS
-  sass: {
-    outputStyle: isProd ? 'copressed' : 'expanded',
+  sassOptions: {
+    outputStyle: process.argv.includes('--prod') ? 'compressed' : 'expanded',
   },
   // RENAME
   rename: {
@@ -47,8 +57,8 @@ const app = {
     suffix: '.min',
   },
   // WEBPACK
-  webpack: {
-    mode: 'production',
+  webpackOptions: {
+    mode: process.argv.includes('--prod') ? 'production' : 'development',
     entry: {
       main: './src/js/main.js',
       about: './src/js/about.js',
@@ -66,11 +76,11 @@ const app = {
     },
   },
   // IMAGEMIN
-  imagemin: {
+  imageminOptions: {
     verbose: true
   },
   // FONTER
-  fonter: {
+  fonterOptions: {
     formats: 'ttf'
   },
   // SVG
@@ -81,6 +91,11 @@ const app = {
         example: true,
       },
     },
+  },
+  // SERVER
+  serverOptions: {
+    livereload: true,
+    open: true,
   },
 };
 

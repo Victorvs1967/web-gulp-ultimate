@@ -1,16 +1,18 @@
 const src = './src',
-      dest = './docs';
+      dest = process.argv.includes('--prod') ? './docs' : './dist';
 
 const path = {
   root: dest,
   src: src,
   html: {
-    src: [src.concat('/html/**/*.html'), '!'.concat(src, '/html/includes/*.html')],
+    src: [src.concat('/html/*.html'), src.concat('/html/pages/*.html'), '!'.concat(src, '/html/includes/*.html')],
+    pages: src.concat('/html/pages/*.html'),
     watch: src.concat('/html/**/*.html'),
     dest: dest,
   },
   pug: {
-    src: src.concat('/pug/*.pug'),
+    src: [src.concat('/pug/*.pug'), src.concat('/pug/pages/*.pug')],
+    pages: src.concat('/pug/pages/*.pug'),
     watch: src.concat('/pug/**/*.pug'),
     dest: dest,
   },
@@ -22,14 +24,13 @@ const path = {
   },
   js: {
     src: src.concat('/js/*.js'),
-    js: src.concat('/lib/**/*.js'),
-    watch: src.concat('/js/**/*.pug'),
+    watch: src.concat('/js/**/*'),
     dest: dest.concat('/js/'),
   },
   img: {
-    src: src.concat('/img/**/*.{png, jpg, jpeg, gif, svg}'),
+    src: src.concat('/img/**/*.{png,jpg,jpeg,gif,svg}'),
     icons: src.concat('/icons/**/*.svg'),
-    watch: src.concat('/img/**/*.{png, jpg, jpeg, gif, svg}'),
+    watch: src.concat('/img/**/*.{png,jpg,jpeg,gif,svg}'),
     dest: dest.concat('/img/'),
   },
   fonts: {
@@ -40,7 +41,7 @@ const path = {
   lib: {
     srcCss: src.concat('/lib/**/*.{css}'),
     srcJs: src.concat('/lib/**/*.{js}'),
-    watch: src.concat('/lib/**/*.{css, js}'),
+    watch: src.concat('/lib/**/*.{css,js}'),
     destCss: dest.concat('/css/'),
     destJs: dest.concat('/js/'),
   },

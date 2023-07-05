@@ -1,17 +1,19 @@
 import fs from 'fs';
-import fronter from 'gulp-fonter';
+import fonter from 'gulp-fonter';
 import ttf2woff from 'gulp-ttf2woff';
 import ttf2woff2 from 'gulp-ttf2woff2';
 
 import app from '../config/gulp.js';
 
-const fonts = () => app.src(app.path.fonts.src)
-  .pipe(app.plumber(app.plumberNotify('Fonts')))
-  .pipe(app.newer(app.path.fonts.dest))
-  // .pipe(fronter(app.fonter))
+const { src, dest, path, plumber, plumberNotify, newer, fonterOptions } = app;
+
+const fonts = () => src(path.fonts.src)
+  .pipe(plumber(plumberNotify('Fonts')))
+  .pipe(newer(path.fonts.dest))
+  // .pipe(fonter(fonterOptions))
   .pipe(ttf2woff({ clone: true }))
   .pipe(ttf2woff2({ clone: true }))
-  .pipe(app.dest(app.path.fonts.dest));
+  .pipe(dest(path.fonts.dest));
 
   export const fontsStyle = async () => {
     const cb = () => {};
